@@ -6,7 +6,7 @@ Este repositório contém um jogo simples, mas que pudesse ser utilizado para te
 
 # Instalação
 
-1.  [Clone este projeto](https://celiudos.github.io/unb_aed_drops_game)
+1.  [Clone este projeto](https://github.com/celiudos/unb_aed_drops_game/)
 1.  Instale as dependências com `npm install`
 1.  Execute o projeto com `npm start`
 1.  Acesse a url no navegador: [http://localhost:5001/](http://localhost:5001/)
