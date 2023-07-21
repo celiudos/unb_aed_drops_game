@@ -558,7 +558,7 @@ class Game extends Plan_DFS {
 
     if (paramPos === "s") {
       this.init_fixed_pos();
-    } else if (paramPos !== "n") {
+    } else if (paramPos !== null && paramPos.indexOf(",") > -1) {
       const inputArray = paramPos.split(",");
 
       // Criar a matriz bidimensional
