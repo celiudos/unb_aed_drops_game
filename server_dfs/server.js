@@ -96,6 +96,7 @@ class DFS_Sim {
 
 const express = require("express");
 var cors = require("cors");
+const path = require("path");
 
 // Create express api and expose it
 const app = express();
@@ -131,6 +132,9 @@ app.post("/solve", (req, res) => {
 });
 
 const porta = 5001;
+
+app.use("/", express.static(path.join(__dirname, "../public")));
+
 app.listen(porta, function () {
   console.log(`CORS-enabled web server listening on port ${porta}`);
 });
