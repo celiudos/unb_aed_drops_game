@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <title>Game</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="assets/bootstrap.css" />
+    <link rel="stylesheet" href="assets/animate.min.css" />
+  </head>
+  <body>
+    <div class="container" id="game">
+      <div class="pt-5">
+        <div class="row">
+          <div class="col-12">
+            <h3>Posição</h3>
+            <a id="link_mesma_config" class="btn btn-secondary" href="?posDef">
+              Tentar novamente mesma
+            </a>
+            <a class="btn btn-secondary" href="?posFix"> Posição fixa </a>
+            <a class="btn btn-secondary" href="?"> Posição aleatória </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div id="board" class="mt-4">
+              <div class="r">
+                <button class="square"></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="dashboard card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <button id="run_solver" class="btn btn-secondary">
+                      Solver
+                      <span class="badge badge-light">0</span>
+                    </button>
+                    <button id="run_dfs" class="btn btn-secondary">
+                      DFS <span class="badge badge-light">0</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="progress" id="carregando_plan">
+                      <div
+                        class="progress-bar progress-bar-striped progress-bar-animated"
+                        role="progressbar"
+                        style="width: 100%"
+                      >
+                        Carregando planejador
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col">
+                    <div class="input-group my-3">
+                      <input
+                        type="text"
+                        id="plan"
+                        value="3,3_2,2_1,1_1,1"
+                        placeholder="Plan"
+                        class="form-control"
+                      />
+                      <div class="input-group-append">
+                        <button id="run" class="btn btn-primary">Rodar</button>
+                      </div>
+                    </div>
+
+                    <div class="qnt_click">
+                      <h2>Cliques restantes</h2>
+                      <div class="badge badge-warning" id="qnt_click">-</div>
+                    </div>
+                    <div class="score">
+                      <h2>Pontuação</h2>
+                      <div
+                        id="score"
+                        class="badge badge-success"
+                        id="qnt_click"
+                      >
+                        -
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Water -->
+
+    <div class="container" id="assets">
+      <img
+        class="water animate__animated animate__bounceIn"
+        alt="gota"
+        src="assets/gota.png"
+      />
+      <div>
+        <textarea name="domain" id="domain" cols="30" rows="10">
+(define (domain simples-gotas)
+  (:requirements :typing :negative-preconditions :fluents)
+  (:types
+    celula tamanho
+  )
+
+  (:predicates
+    (tem-gota ?c - celula) ; Se a célula tem gota
+    ; (adjacente ?c1 - celula ?c2 - celula) ; Se uma gota tem um ao lado
+    (adjacente ?c - celula ?c2c - celula ?c2d - celula ?c2b - celula ?c2e - celula) ; Se uma gota tem um ao lado
+    ; Tamanho das gotas
+    (tamanho-gota-g ?c1 - celula)
+    (tamanho-gota-m ?c1 - celula)
+    (tamanho-gota-p ?c1 - celula)
+  )
+
+  ; Clicando na gota de tamanho P (pequeno)
+  (:action clicar-gota-p
+    :parameters (?c1 - celula)
+    :precondition (and
+      (tem-gota ?c1)
+      (tamanho-gota-p ?c1)
+    )
+    :effect (and
+      (not (tamanho-gota-p ?c1))
+      (tamanho-gota-m ?c1)
+    )
+  )
+
+  ; Clicando na gota de tamanho M (medio)
+  (:action clicar-gota-m
+    :parameters (?c1 - celula)
+    :precondition (and
+      (tem-gota ?c1)
+      (tamanho-gota-m ?c1)
+    )
+    :effect (and
+      (not (tamanho-gota-m ?c1))
+      (tamanho-gota-g ?c1)
+    )
+  )
+
+  ; Clicando na gota de tamanho G (grande)
+  (:action clicar-gota-g
+    :parameters (?c1 - celula)
+    :precondition (and
+      (tem-gota ?c1)
+      (tamanho-gota-g ?c1)
+    )
+    :effect (and
+      (not (tem-gota ?c1))
+    )
+  )
+
+  ; Clicando na gota de tamanho G (grande) com outra gota do lado
+  (:action clicar-gota-g-com-adjacente
+    :parameters (?c1 ?c2c ?c2d ?c2b ?c2e - celula)
+    :precondition (and
+      (tem-gota ?c1)
+      (tamanho-gota-g ?c1)
+      (adjacente ?c1 ?c2c ?c2d ?c2b ?c2e)
+    )
+    :effect (and
+      (not (tem-gota ?c1))
+      (not (tem-gota ?c2c))
+      (not (tem-gota ?c2d))
+      (not (tem-gota ?c2b))
+      (not (tem-gota ?c2e))
+    )
+  )
+) </textarea
+        >
+        <textarea name="prob" id="prob" cols="30" rows="10">
+(define (problem simples-gotas-problema)
+  (:domain simples-gotas)
+
+  (:objects
+    :::OBJETOS:::
+    - celula
+    C00 - celula ; Não tem gota
+    )
+
+  (:init
+    :::CONTEUDO:::
+  )
+
+  (:goal
+    (forall
+      (?c - celula)
+      (not (TEM-GOTA ?c))
+    )
+  )
+)</textarea
+        >
+      </div>
+    </div>
+
+    <!-- ====== -->
+
+    <script src="assets/jquery.min.js"></script>
+    <script src="assets/index.js"></script>
+  </body>
+</html>
