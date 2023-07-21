@@ -1,7 +1,6 @@
 /* BG gray light gradient */
 html,
 body {
-  height: 100%;
   background: #f2f2f2;
   background: -moz-linear-gradient(top, #f2f2f2 0%, #cbcbcb 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f2f2f2), color-stop(100%, #cbcbcb));
@@ -12,12 +11,6 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#cbcbcb', GradientType=0);
 }
 
-/* body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-} */
 
 .center {
   display: flex;
@@ -86,10 +79,6 @@ body {
 
 .water.water--lg {
   width: 100%;
-}
-
-#assets {
-  visibility: hidden;
 }
 
 .dashboard .qnt_click .badge,

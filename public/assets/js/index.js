@@ -460,10 +460,19 @@ class Game extends Plan_DFS {
   }
 
   default_values() {
+    const paramsGet = new URLSearchParams(window.location.search);
     // this.board_size = [3, 3];
     this.board_size = [4, 4];
     // this.board_size = [5, 5];
     // this.board_size = [10, 10];
+
+    this.board_size = paramsGet.get("board_size")
+      ? paramsGet
+          .get("board_size")
+          .split("")
+          .map((u) => parseInt(u))
+      : this.board_size;
+
     this.sizes = ["lg", "md", "sm"];
     this.score_ini = 0;
     this.click_ini = 10;
@@ -538,19 +547,19 @@ class Game extends Plan_DFS {
   }
 
   set_link_mesma_config() {
-    this.link_mesma_config.attr("href", `?posDef=${this.tabuleiro_gotas}`);
+    this.link_mesma_config.attr("href", `?posFix=${this.tabuleiro_gotas}`);
   }
 
   init_pos() {
-    const params = window.location.search;
-
+    // get params GET from url
+    const params = new URLSearchParams(window.location.search);
+    const paramPos = params.get("posFix");
     const cls = this;
-    if (params.indexOf("posFix") !== -1) {
-      this.init_fixed_pos();
-    } else if (params.indexOf("posDef") !== -1) {
-      const valores = params.split("=")[1];
 
-      const inputArray = valores.split(",");
+    if (paramPos === "s") {
+      this.init_fixed_pos();
+    } else if (paramPos !== "n") {
+      const inputArray = paramPos.split(",");
 
       // Criar a matriz bidimensional
       const size = Math.sqrt(inputArray.length);
@@ -783,6 +792,13 @@ class Game extends Plan_DFS {
     const random_drops = Math.floor(Math.random() * to) + 1;
     return random_drops;
   }
+}
+
+// ===============
+function addUrlParameter(name, value) {
+  var searchParams = new URLSearchParams(window.location.search);
+  searchParams.set(name, value);
+  window.location.search = searchParams.toString();
 }
 
 // ===============

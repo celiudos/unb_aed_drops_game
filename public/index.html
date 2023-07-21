@@ -16,25 +16,16 @@
       href="assets/img/favicon/favicon-16x16.png"
     />
     <title>Game</title>
-    <link rel="stylesheet" href="assets/style/style.css" />
     <link rel="stylesheet" href="assets/style/bootstrap.css" />
     <link rel="stylesheet" href="assets/style/animate.min.css" />
+    <link rel="stylesheet" href="assets/style/style.css" />
   </head>
   <body>
-    <div class="container" id="game">
+    <div class="container mb-3" id="game">
       <div class="pt-5">
         <div class="row">
-          <div class="col-12">
-            <h3>Posição</h3>
-            <a id="link_mesma_config" class="btn btn-secondary" href="?posDef">
-              Tentar novamente mesma
-            </a>
-            <a class="btn btn-secondary" href="?posFix"> Posição fixa </a>
-            <a class="btn btn-secondary" href="?"> Posição aleatória </a>
-          </div>
-        </div>
-        <div class="row">
           <div class="col-8">
+            <h1>Drops Game</h1>
             <div id="board" class="mt-4">
               <div class="r">
                 <button class="square"></button>
@@ -44,6 +35,7 @@
 
           <div class="col">
             <div class="dashboard card">
+              <div class="card-header">Recursos</div>
               <div class="card-body">
                 <div class="row">
                   <div class="col">
@@ -103,6 +95,56 @@
                 </div>
               </div>
             </div>
+
+            <div class="card mt-3">
+              <div class="card-header">Posição</div>
+              <div class="card-body">
+                <div class="list-group">
+                  <a
+                    id="link_mesma_config"
+                    class="list-group-item list-group-item-action"
+                    href="#"
+                  >
+                    Tentar novamente mesma
+                  </a>
+                  <a
+                    class="list-group-item list-group-item-action"
+                    onclick="addUrlParameter('posFix', 's')"
+                    href="#"
+                  >
+                    Posição fixa
+                  </a>
+                  <a
+                    class="list-group-item list-group-item-action"
+                    onclick="addUrlParameter('posFix', 'n')"
+                    href="#"
+                  >
+                    Posição aleatória
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="card mt-3">
+              <div class="card-header">Tamanho do tabuleiro</div>
+              <div class="card-body">
+                <div class="list-group">
+                  <a
+                    class="list-group-item list-group-item-action"
+                    onclick="addUrlParameter('board_size', '33')"
+                    href="#"
+                  >
+                    3x3
+                  </a>
+                  <a
+                    class="list-group-item list-group-item-action"
+                    onclick="addUrlParameter('board_size', '44')"
+                    href="#"
+                  >
+                    4x4
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -110,7 +152,7 @@
 
     <!-- Water -->
 
-    <div class="container" id="assets">
+    <div class="d-none">
       <img
         class="water animate__animated animate__bounceIn"
         alt="gota"
@@ -217,7 +259,6 @@
 
     <!-- ====== -->
 
-    <!-- <script src="assets/js/cross_origin.js"></script> -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/index.js"></script>
   </body>
