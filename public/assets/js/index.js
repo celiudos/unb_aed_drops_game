@@ -795,6 +795,8 @@ class Game extends Plan_DFS {
 }
 
 // ===============
+
+// eslint-disable-next-line no-unused-vars
 function addUrlParameter(name, value) {
   var searchParams = new URLSearchParams(window.location.search);
   searchParams.set(name, value);
