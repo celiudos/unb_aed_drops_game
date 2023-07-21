@@ -9,4 +9,10 @@ Este repositório contém um jogo simples, mas que pudesse ser utilizado para te
 1.  [Clone este projeto](https://celiudos.github.io/unb_aed_drops_game)
 1.  Instale as dependências com `npm install`
 1.  Execute o projeto com `npm start`
-1.  As configurações ficam no arquivo `public\assets\index.js` linha 462
+1.  As configurações ficam no arquivo `public\assets\js\index.js` linha 462
+
+## DFS local ou via Navegador
+
+1.  Para utilizar o DFS via NodeJs abra o arquivo `public\assets\js\index.js` linha 482 e altere para
+
+        this.utilizar_dfs_local = false;
