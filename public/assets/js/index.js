@@ -18,7 +18,7 @@ class Plan_PDDL {
       cls.set_carregando_plan(true);
 
       $.ajax({
-        url: "http://solver.planning.domains/solve",
+        url: "https://solver.planning.domains/solve",
         type: "POST",
         contentType: "application/json",
         data,
