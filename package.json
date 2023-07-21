@@ -4,7 +4,7 @@
   "description": "Paper for AED - UNB",
   "main": "index.js",
   "scripts": {
-    "ini": "npm run dfs & npm run http",
+    "start": "npm run dfs & npm run http",
     "dfs": "node server_dfs/server.js",
     "http": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
